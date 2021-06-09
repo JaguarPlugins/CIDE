@@ -8,6 +8,13 @@ public class Map {
 
 	private Line line = new Line(200, 200, 800, 200);
 	
+	private double width, height;
+	
+	public Map(double width, double height) {
+		this.width = width;
+		this.height = height;
+	}
+
 	public void render(GraphicsContext g) {
 		g.setFill(Color.BLACK);
 		g.fillRect(line.getStartX() - 1, line.getStartY() - 1, line.getEndX() - line.getStartX() + 2, line.getEndY() - line.getStartY() + 2);
@@ -15,6 +22,14 @@ public class Map {
 	
 	public boolean intersects(double x, double y, double width, double height) {
 		return line.intersects(x, y, width, height);
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public double getHeight() {
+		return height;
 	}
 	
 }
