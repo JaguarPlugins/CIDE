@@ -23,6 +23,8 @@ public class Main extends Application {
 		
 		primaryStage.setTitle("Alex Gray's CIDE Artefact: Pacman");
 		primaryStage.setScene(scene);
+		primaryStage.setWidth(1200 + 6);
+		primaryStage.setHeight(800 + 29);
 		primaryStage.setResizable(false);
 		primaryStage.setOnCloseRequest(e -> {
 			game.interrupt();

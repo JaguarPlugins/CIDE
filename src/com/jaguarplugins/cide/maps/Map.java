@@ -2,11 +2,15 @@ package com.jaguarplugins.cide.maps;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 
 public class Map {
 
-	private Line line = new Line(200, 200, 800, 200);
+	private Rectangle[] shapes = {
+			new Rectangle(81, 160, 800, 80),
+			new Rectangle(199, 199, 801, 201),
+			new Rectangle()
+	};
 	
 	private double width, height;
 	
@@ -16,12 +20,18 @@ public class Map {
 	}
 
 	public void render(GraphicsContext g) {
-		g.setFill(Color.BLACK);
-		g.fillRect(line.getStartX() - 1, line.getStartY() - 1, line.getEndX() - line.getStartX() + 2, line.getEndY() - line.getStartY() + 2);
+		for (Rectangle r : shapes) {
+			drawRect(g, r);
+		}
 	}
 	
 	public boolean intersects(double x, double y, double width, double height) {
-		return line.intersects(x, y, width, height);
+		for (Rectangle r : shapes) {
+			if (r.intersects(x, y, width, height)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public double getWidth() {
@@ -30,6 +40,14 @@ public class Map {
 
 	public double getHeight() {
 		return height;
+	}
+	
+	private void drawRect(GraphicsContext g, Rectangle rect) {
+
+		g.setLineWidth(5);
+		g.setStroke(Color.WHITE);
+		g.strokeRoundRect(rect.getX() - 1, rect.getY() - 1, rect.getWidth() + 2, rect.getHeight() + 2, 10, 10);
+		
 	}
 	
 }
