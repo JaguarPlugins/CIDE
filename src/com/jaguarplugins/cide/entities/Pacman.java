@@ -11,7 +11,7 @@ import javafx.scene.input.KeyEvent;
 
 public class Pacman extends Entity implements EventHandler<KeyEvent> {
 
-	private double xOffset, yOffset, speed = 3;
+	private double xDir = 0, yDir = 0, xNew, yNew, speed = 3;
 	private Image[] imgs = {
 			new Image("com/jaguarplugins/cide/res/open.png"),
 			new Image("com/jaguarplugins/cide/res/closed.png")
@@ -28,7 +28,13 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 	public void tick() {
 		
 		animation.tick();
-		move(xOffset * speed, yOffset * speed);
+		if (xNew + yNew != 0 && move(xNew * speed, yNew * speed)) {
+			xDir = xNew;
+			yDir = yNew;
+			xNew = 0;
+			yNew = 0;
+		}
+		move(xDir * speed, yDir * speed);
 		
 	}
 	
@@ -45,23 +51,23 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 	public void handle(KeyEvent e) {
 		
 		if (e.getCode().equals(KeyCode.DOWN) || e.getCode().equals(KeyCode.S)) {
-			xOffset = 0;
-			yOffset = 1;
+			xNew = 0;
+			yNew = 1;
 		}
 		
 		if (e.getCode().equals(KeyCode.UP) || e.getCode().equals(KeyCode.W)) {
-			xOffset = 0;
-			yOffset = -1;
+			xNew = 0;
+			yNew = -1;
 		}
 		
 		if (e.getCode().equals(KeyCode.LEFT) || e.getCode().equals(KeyCode.A)) {
-			xOffset = -1;
-			yOffset = 0;
+			xNew = -1;
+			yNew = 0;
 		}
 		
 		if (e.getCode().equals(KeyCode.RIGHT) || e.getCode().equals(KeyCode.D)) {
-			xOffset = 1;
-			yOffset = 0;
+			xNew = 1;
+			yNew = 0;
 		}
 		
 	}
