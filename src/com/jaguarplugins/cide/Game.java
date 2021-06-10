@@ -15,7 +15,7 @@ public class Game extends GameTemplate{
 	public Game(GraphicsContext g, int fps) {
 		super(g, fps);
 		map = new Map(1200, 800);
-		player = new Pacman(map, 0, 0, 75, 75);
+		player = new Pacman(map, 1, 1, 78, 78);
 	}
 
 	@Override

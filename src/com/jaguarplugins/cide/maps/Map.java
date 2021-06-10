@@ -6,6 +6,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Map {
 
+	private Rectangle border = new Rectangle (0, 0, 1120, 720);
 	private Rectangle[] shapes = {
 			
 			new Rectangle(80, 80, 400, 80), //Top left
@@ -38,9 +39,13 @@ public class Map {
 		for (Rectangle r : shapes) {
 			drawRect(g, r);
 		}
+		drawRect(g, border);
 	}
 	
 	public boolean intersects(double x, double y, double width, double height) {
+		if ((x <= 0 || x + width >= this.width || y <= 0 || y + height >= this.height)) {
+			return true;
+		}
 		for (Rectangle r : shapes) {
 			if (r.intersects(x, y, width, height)) {
 				return true;

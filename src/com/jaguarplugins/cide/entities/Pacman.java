@@ -11,7 +11,7 @@ import javafx.scene.input.KeyEvent;
 
 public class Pacman extends Entity implements EventHandler<KeyEvent> {
 
-	private double xDir = 0, yDir = 0, xNew, yNew, speed = 3;
+	private double xDir = 0, yDir = 0, xNew, yNew, speed = 4;
 	private Image[] imgs = {
 			new Image("com/jaguarplugins/cide/res/open.png"),
 			new Image("com/jaguarplugins/cide/res/closed.png")
@@ -35,6 +35,8 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 			yNew = 0;
 		}
 		move(xDir * speed, yDir * speed);
+		
+		System.out.println("Coords: " + x + ", " +  y);
 		
 	}
 	

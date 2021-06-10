@@ -39,11 +39,9 @@ public abstract class Entity {
 	
 	public boolean move(double xOffset, double yOffset) {
 		if (!map.intersects(x + xOffset, y + yOffset, width, height)) {
-			if (!(x + xOffset < 0 || x + width + xOffset > map.getWidth() || y + yOffset < 0 || y + height + yOffset > map.getHeight())) {	
-				x += xOffset;
-				y += yOffset;
-				return true;
-			}
+			x += xOffset;
+			y += yOffset;
+			return true;
 		}
 		return false;
 	}

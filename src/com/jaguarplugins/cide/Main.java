@@ -18,7 +18,7 @@ public class Main extends Application {
 		
 		Canvas canvas = new Canvas(1120, 720);
 		GraphicsContext g = canvas.getGraphicsContext2D();
-		Game game = new Game(g, 60);
+		Game game = new Game(g, 50);
 		Scene scene = new Scene(new Group(canvas));
 		
 		primaryStage.setTitle("Alex Gray's CIDE Artefact: Pacman");
