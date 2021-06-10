@@ -16,15 +16,15 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		Canvas canvas = new Canvas(1200, 800);
+		Canvas canvas = new Canvas(1120, 720);
 		GraphicsContext g = canvas.getGraphicsContext2D();
 		Game game = new Game(g, 60);
 		Scene scene = new Scene(new Group(canvas));
 		
 		primaryStage.setTitle("Alex Gray's CIDE Artefact: Pacman");
 		primaryStage.setScene(scene);
-		primaryStage.setWidth(1200 + 6);
-		primaryStage.setHeight(800 + 29);
+		primaryStage.setWidth(1120 + 6);
+		primaryStage.setHeight(720 + 29);
 		primaryStage.setResizable(false);
 		primaryStage.setOnCloseRequest(e -> {
 			game.interrupt();

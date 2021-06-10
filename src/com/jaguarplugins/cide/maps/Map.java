@@ -7,9 +7,24 @@ import javafx.scene.shape.Rectangle;
 public class Map {
 
 	private Rectangle[] shapes = {
-			new Rectangle(81, 160, 800, 80),
-			new Rectangle(199, 199, 801, 201),
-			new Rectangle()
+			
+			new Rectangle(80, 80, 400, 80), //Top left
+			new Rectangle(80, 80, 80, 400),
+			new Rectangle(80, 400, 400, 80),
+			new Rectangle(400, 240, 80, 240),
+			new Rectangle(240, 240, 240, 80),
+			
+			new Rectangle(560, 80, 600, 80), //Top right
+			new Rectangle(560, 240, 80, 240),
+			new Rectangle(560, 400, 320, 80),
+			new Rectangle(720, 240, 240, 80),
+			new Rectangle(960, 400, 80, 240),
+			new Rectangle(1040, 240, 120, 80), // blob
+			
+			new Rectangle(80, 560, 480, 80), // Bottom left
+			
+			new Rectangle(640, 560, 240, 80), // bottom right
+	
 	};
 	
 	private double width, height;

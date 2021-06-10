@@ -3,7 +3,6 @@ package com.jaguarplugins.cide.entities;
 import com.jaguarplugins.cide.maps.Map;
 
 import javafx.event.EventHandler;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -43,14 +42,15 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 	}
 	
 
-	@Override
-	public void render(GraphicsContext g) {
-//		TODO Rotate pacman when you move!!
-//		drawRotatedImage(g, sprite, 90, x, y, width, height);
-		
-		g.fillRect(x, y, width, height);
-		
-	}
+//	@Override
+//	public void render(GraphicsContext g) {
+////		TODO Rotate pacman when you move!!
+////		drawRotatedImage(g, sprite, 90, x, y, width, height);
+//		
+//		g.setFill(Color.RED);
+//		g.fillRect(x, y, width, height);
+//		
+//	}
 
 	@Override
 	public void handle(KeyEvent e) {
