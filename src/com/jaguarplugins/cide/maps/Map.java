@@ -1,12 +1,16 @@
 package com.jaguarplugins.cide.maps;
 
+import java.util.ArrayList;
+
+import com.jaguarplugins.cide.entities.Pellet;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Map {
 
-	private Rectangle border = new Rectangle (0, 0, 1120, 720);
+	private Rectangle border = new Rectangle (1, 1, 1119, 719);
 	private Rectangle[] shapes = {
 			
 			new Rectangle(80, 80, 400, 80), //Top left
@@ -54,6 +58,22 @@ public class Map {
 		return false;
 	}
 
+	public ArrayList<Pellet> generatePellets() {
+		
+		ArrayList<Pellet> pellets = new ArrayList<Pellet>();
+		
+		for (int x = 1; x <= 14 ; x++) {
+			for (int y = 1; y <= 9; y++) {
+				if (!intersects(x * 80 - 40, y * 80 - 40, 1, 1)) {
+					pellets.add(new Pellet(this, x * 80 - 40, y * 80 - 40));
+				}
+			}
+		}
+		
+		return pellets;
+	
+	}
+	
 	public double getWidth() {
 		return width;
 	}

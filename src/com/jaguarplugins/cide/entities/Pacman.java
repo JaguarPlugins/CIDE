@@ -8,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Rectangle;
 
 public class Pacman extends Entity implements EventHandler<KeyEvent> {
 
@@ -20,7 +21,7 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 	
 	
 	public Pacman(Map map, double x, double y, double width, double height) {
-		super(map, x, y, width, height, null);
+		super(map, x, y, width, height);
 		animation = new Animation(200, imgs);
 	}
 
@@ -72,6 +73,10 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 			yNew = 0;
 		}
 		
+	}
+	
+	public boolean intersectsPellet(Pellet p) {
+		return new Rectangle(p.getX(), p.getY(), 1, 1).intersects(x, y, width, height);
 	}
 	
 }

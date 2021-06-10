@@ -11,16 +11,15 @@ public abstract class Entity {
 
 	protected Map map;
 	protected double x, y, width, height;
-	protected Image sprite;
+	protected Image sprite = null;
 	
-	public Entity(Map map, double x, double y, double width, double height, Image sprite) {
+	public Entity(Map map, double x, double y, double width, double height) {
 		
 		this.map = map;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.sprite = sprite;
 		
 	}
 	
@@ -78,6 +77,14 @@ public abstract class Entity {
 
 	public double getHeight() {
 		return height;
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
 	}
 	
 }
