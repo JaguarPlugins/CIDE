@@ -22,7 +22,6 @@ public class Game extends GameTemplate{
 	protected void tick() {
 		
 		player.tick();
-		System.out.println("test");
 		
 	}
 
