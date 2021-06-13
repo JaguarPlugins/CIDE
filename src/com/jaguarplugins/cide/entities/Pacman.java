@@ -2,6 +2,7 @@ package com.jaguarplugins.cide.entities;
 
 import com.jaguarplugins.cide.gfx.Animation;
 import com.jaguarplugins.cide.maps.Map;
+import com.jaguarplugins.cide.util.Direction;
 
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
@@ -12,7 +13,8 @@ import javafx.scene.shape.Rectangle;
 
 public class Pacman extends Entity implements EventHandler<KeyEvent> {
 
-	private double xDir = 0, yDir = 0, xNew, yNew, speed = 4;
+	private double speed = 4;
+	private Direction dir = Direction.DOWN, newDir;
 	private Image[] imgs = {
 			new Image("com/jaguarplugins/cide/res/open.png"),
 			new Image("com/jaguarplugins/cide/res/closed.png")
@@ -29,13 +31,15 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 	public void tick() {
 		
 		animation.tick();
-		if (xNew + yNew != 0 && move(xNew * speed, yNew * speed)) {
-			xDir = xNew;
-			yDir = yNew;
-			xNew = 0;
-			yNew = 0;
+		
+		if (newDir != null) { 
+			if (move(newDir.amplify(speed))) {
+				dir = newDir;
+				newDir = null;
+			}
 		}
-		move(xDir * speed, yDir * speed);
+
+		move(dir.amplify(speed));
 		
 	}
 	
@@ -52,23 +56,19 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 	public void handle(KeyEvent e) {
 		
 		if (e.getCode().equals(KeyCode.DOWN) || e.getCode().equals(KeyCode.S)) {
-			xNew = 0;
-			yNew = 1;
+			newDir = Direction.DOWN;
 		}
 		
 		if (e.getCode().equals(KeyCode.UP) || e.getCode().equals(KeyCode.W)) {
-			xNew = 0;
-			yNew = -1;
+			newDir = Direction.UP;
 		}
 		
 		if (e.getCode().equals(KeyCode.LEFT) || e.getCode().equals(KeyCode.A)) {
-			xNew = -1;
-			yNew = 0;
+			newDir = Direction.LEFT;
 		}
 		
 		if (e.getCode().equals(KeyCode.RIGHT) || e.getCode().equals(KeyCode.D)) {
-			xNew = 1;
-			yNew = 0;
+			newDir = Direction.RIGHT;
 		}
 		
 	}

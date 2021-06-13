@@ -1,6 +1,7 @@
 package com.jaguarplugins.cide.entities;
 
 import com.jaguarplugins.cide.maps.Map;
+import com.jaguarplugins.cide.util.Direction;
 
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
@@ -40,6 +41,18 @@ public abstract class Entity {
 		if (!map.intersects(x + xOffset, y + yOffset, width, height)) {
 			x += xOffset;
 			y += yOffset;
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean move(Direction direction) {
+		if (direction == null) {
+			return false;
+		}
+		if (!map.intersects(x + direction.getxOffset(), y + direction.getyOffset(), width, height)) {
+			x += direction.getxOffset();
+			y += direction.getyOffset();
 			return true;
 		}
 		return false;

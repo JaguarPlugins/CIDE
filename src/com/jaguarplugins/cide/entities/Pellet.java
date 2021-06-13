@@ -1,6 +1,7 @@
 package com.jaguarplugins.cide.entities;
 
 import com.jaguarplugins.cide.maps.Map;
+import com.jaguarplugins.cide.util.Direction;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -26,6 +27,12 @@ public class Pellet extends Entity {
 
 	@Override
 	public boolean move(double xOffset, double yOffset) {
+//		Stops pellets from being able to move
+		return false;
+	}
+	
+	@Override
+	public boolean move(Direction direction) {
 //		Stops pellets from being able to move
 		return false;
 	}
