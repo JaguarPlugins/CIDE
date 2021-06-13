@@ -37,14 +37,12 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 		}
 		move(xDir * speed, yDir * speed);
 		
-		System.out.println("Coords: " + x + ", " +  y);
-		
 	}
 	
 	@Override
 	public void render(GraphicsContext g) {
 //		TODO Rotate pacman when you move!!
-//		drawRotatedImage(g, sprite, 90, x, y, width, height);
+//		drawRotatedImage(g, animation.getCurrentFrame(), 10, x, y, width, height);
 		
 		g.drawImage(animation.getCurrentFrame(), x, y, width, height);
 		
@@ -77,6 +75,10 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 	
 	public boolean intersectsPellet(Pellet p) {
 		return new Rectangle(p.getX(), p.getY(), 1, 1).intersects(x, y, width, height);
+	}
+	
+	public boolean intersectsGhost(Ghost ghost) {
+		return new Rectangle(ghost.getX(), ghost.getY(), ghost.getWidth(), ghost.getHeight()).intersects(x, y, width, height);
 	}
 	
 }
