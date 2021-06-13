@@ -22,7 +22,7 @@ public class Game extends GameTemplate{
 		super(g, fps);
 		map = new Map(1120, 720);
 		player = new Pacman(map, 1, 1, 78, 78);
-		ghost1 = new Ghost(map, player, 80, 1, 78, 78);
+		ghost1 = new Ghost(map, player, 320, 1, 78, 78);
 		pellets = map.generatePellets();
 	}
 

@@ -19,6 +19,10 @@ public class Direction {
 		return new Direction(xOffset * multiplier, yOffset * multiplier);
 	}
 	
+	public Direction complementary() {
+		return new Direction(-xOffset, -yOffset);
+	}
+	
 	public double getxOffset() {
 		return xOffset;
 	}
