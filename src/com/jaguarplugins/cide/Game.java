@@ -2,6 +2,8 @@ package com.jaguarplugins.cide;
 
 import java.util.ArrayList;
 
+import com.jaguarplugins.cide.ai.Heatseeker;
+import com.jaguarplugins.cide.ai.Random;
 import com.jaguarplugins.cide.entities.Ghost;
 import com.jaguarplugins.cide.entities.Pacman;
 import com.jaguarplugins.cide.entities.Pellet;
@@ -16,13 +18,15 @@ public class Game extends GameTemplate{
 	private Map map;
 	private Pacman player;
 	private ArrayList<Pellet> pellets;
-	private Ghost ghost1;
+	private Ghost ghost1, ghost2, ghost3;
 	
 	public Game(GraphicsContext g, int fps) {
 		super(g, fps);
 		map = new Map(1120, 720);
 		player = new Pacman(map, 1, 1, 78, 78);
-		ghost1 = new Ghost(map, player, 321, 1, 78, 78);
+		ghost1 = new Ghost(map, player, 321, 1, 78, 78, new Heatseeker());
+		ghost2 = new Ghost(map, player, 1041, 641, 78, 78, new Heatseeker());
+		ghost3 = new Ghost(map, ghost1, 481, 1, 78, 78, new Random());
 		pellets = map.generatePellets();
 	}
 
@@ -31,6 +35,8 @@ public class Game extends GameTemplate{
 		
 		player.tick();
 		ghost1.tick();
+		ghost2.tick();
+		ghost3.tick();
 		
 //		Pacman eating pellets
 		for (Pellet p : pellets) {
@@ -58,6 +64,8 @@ public class Game extends GameTemplate{
 		
 		player.render(g);
 		ghost1.render(g);
+		ghost2.render(g);
+		ghost3.render(g);
 		
 	}
 

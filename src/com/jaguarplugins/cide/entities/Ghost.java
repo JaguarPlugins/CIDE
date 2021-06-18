@@ -2,6 +2,7 @@ package com.jaguarplugins.cide.entities;
 
 import java.util.ArrayList;
 
+import com.jaguarplugins.cide.ai.AI;
 import com.jaguarplugins.cide.maps.Map;
 import com.jaguarplugins.cide.util.Direction;
 
@@ -13,10 +14,12 @@ public class Ghost extends Entity {
 	private Direction cd = Direction.RIGHT; // Current direction
 	private ArrayList<Direction> lastChoices;
 	private int cooldown = 0;
+	private AI ai;
 	
-	public Ghost(Map map, Entity target, double x, double y, double width, double height) {
+	public Ghost(Map map, Entity target, double x, double y, double width, double height, AI ai) {
 		super(map, x, y, width, height);
 		this.target = target;
+		this.ai = ai;
 	}
 
 	@Override
@@ -27,7 +30,7 @@ public class Ghost extends Entity {
 			cooldown--;
 		} else if (cooldown <= 0) {
 			if (!calculateRoutes().equals(lastChoices)) {
-				cd = pick(calculateRoutes());
+				cd = ai.pick(calculateRoutes(), this, target);
 				cooldown = 30;
 			}
 		} else {
@@ -55,30 +58,6 @@ public class Ghost extends Entity {
 		
 		return possible;
 		
-	}
-	
-	private Direction pick(ArrayList<Direction> directions) {
-		Direction best = directions.get(0);
-		for (Direction d : directions) {
-			best = compareDirections(best, d);
-			System.out.println("Best: " + best);
-		}
-		return best;
-	}
-
-	private Direction compareDirections(Direction a, Direction b) {
-		if (distanceToTarget(x + a.getxOffset(), y + a.getyOffset()) < distanceToTarget(x + b.getxOffset(), y + b.getyOffset())) {
-			System.out.println("A");
-			return a;
-		}
-		System.out.println("B");
-		return b;
-
-	}
-	
-	private double distanceToTarget(double xPos, double yPos) {
-		System.out.println("" + Math.sqrt(Math.pow(xPos - target.getX(), 2) + Math.pow(yPos - target.getY(), 2)));
-		return Math.sqrt(Math.pow(xPos - target.getX(), 2) + Math.pow(yPos - target.getY(), 2));
 	}
 	
 }
