@@ -9,7 +9,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Rectangle;
 
 public class Pacman extends Entity implements EventHandler<KeyEvent> {
 
@@ -71,14 +70,6 @@ public class Pacman extends Entity implements EventHandler<KeyEvent> {
 			newDir = Direction.RIGHT;
 		}
 		
-	}
-	
-	public boolean intersectsPellet(Pellet p) {
-		return new Rectangle(p.getX(), p.getY(), 1, 1).intersects(x, y, width, height);
-	}
-	
-	public boolean intersectsGhost(Ghost ghost) {
-		return new Rectangle(ghost.getX(), ghost.getY(), ghost.getWidth(), ghost.getHeight()).intersects(x, y, width, height);
 	}
 	
 }

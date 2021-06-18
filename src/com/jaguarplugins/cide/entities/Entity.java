@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public abstract class Entity {
 
@@ -104,6 +105,10 @@ public abstract class Entity {
 
 	public double getY() {
 		return y;
+	}
+	
+	public boolean intersects(Entity e) {
+		return new Rectangle(x, y, width, height).intersects(e.getX(), e.getY(), e.getWidth(), e.getHeight());
 	}
 	
 }

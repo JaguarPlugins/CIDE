@@ -31,4 +31,19 @@ public class Direction {
 		return yOffset;
 	}
 	
+	@Override
+	public String toString() {
+		if (xOffset == 0 && yOffset < 0) {
+			return "UP";
+		} else if (xOffset == 0 && yOffset > 0) {
+			return "DOWN";
+		} else if (xOffset > 0 && yOffset == 0) {
+			return "RIGHT";
+		} else if (xOffset < 0 && yOffset == 0) {
+			return "LEFT";
+		} else {
+			return "UNKNOWN DIRECTION";
+		}
+	}
+	
 }

@@ -22,7 +22,7 @@ public class Game extends GameTemplate{
 		super(g, fps);
 		map = new Map(1120, 720);
 		player = new Pacman(map, 1, 1, 78, 78);
-		ghost1 = new Ghost(map, player, 320, 1, 78, 78);
+		ghost1 = new Ghost(map, player, 321, 1, 78, 78);
 		pellets = map.generatePellets();
 	}
 
@@ -34,7 +34,7 @@ public class Game extends GameTemplate{
 		
 //		Pacman eating pellets
 		for (Pellet p : pellets) {
-			if (player.intersectsPellet(p)) {
+			if (player.intersects(p)) {
 				pellets.remove(p);
 				break;
 			}
